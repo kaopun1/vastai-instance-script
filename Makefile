@@ -59,7 +59,7 @@ upload_to_gs:
 .PHONY: pipenv_setup
 pipenv_setup:
 	sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
-	python3 pip install --upgrade pipenv
+	python3 -m pip install --upgrade pipenv
 	@echo "Setting up pipenv with Python $(PYTHON_VERSION)..."
 	# pipenv --python $(PYTHON_VERSION)
 	pipenv --python /usr/bin/python3.10
