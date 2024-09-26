@@ -56,7 +56,8 @@ upload_to_gs:
 pipenv_setup:
 	pip install --upgrade pipenv
 	@echo "Setting up pipenv with Python $(PYTHON_VERSION)..."
-	pipenv --python $(PYTHON_VERSION)
+	# pipenv --python $(PYTHON_VERSION)
+	pipenv --python /usr/bin/python3.10
 	pipenv install requests
 	pipenv shell
 
