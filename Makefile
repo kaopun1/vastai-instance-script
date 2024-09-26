@@ -64,7 +64,7 @@ pipenv_setup:
 	# pipenv --python $(PYTHON_VERSION)
 	pipenv --python /usr/bin/python3.10
 	pipenv install requests
-	pipenv shell
+	# pipenv shell
 
 .PHONY: jupyter_setup
 jupyter_setup:
