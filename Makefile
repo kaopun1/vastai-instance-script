@@ -15,7 +15,11 @@ init: update_system setup_gcloud download_from_gs pipenv_setup
 .PHONY: update_system
 update_system:
 	sudo apt-get update && sudo apt-get upgrade -y
-	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip 
+	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip software-properties-common
+	# install python 3.10
+	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo apt-get update
+	sudo apt-get install python3.10 python3.10-venv python3.10-dev
 
 .PHONY: setup_gcloud
 setup_gcloud:
