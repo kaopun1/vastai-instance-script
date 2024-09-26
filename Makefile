@@ -17,9 +17,9 @@ update_system:
 	sudo apt-get update && sudo apt-get upgrade -y
 	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip software-properties-common
 	# install python 3.10
-	sudo add-apt-repository ppa:deadsnakes/ppa
-	sudo apt-get update
-	sudo apt-get install python3.10 python3.10-venv python3.10-dev
+	sudo add-apt-repository -y ppa:deadsnakes/ppa
+	sudo apt-get update -qq
+	sudo apt-get install -y python3.10 python3.10-venv python3.10-dev
 	export LANG=en_US.UTF-8
 
 .PHONY: setup_gcloud
