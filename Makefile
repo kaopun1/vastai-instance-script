@@ -20,6 +20,10 @@ update_system:
 	sudo add-apt-repository -y ppa:deadsnakes/ppa
 	sudo apt-get update -qq
 	sudo apt-get install -y python3.10 python3.10-venv python3.10-dev
+
+	# update pip
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	sudo python3.10 get-pip.py
 	export LANG=en_US.UTF-8
 
 .PHONY: setup_gcloud
@@ -54,7 +58,8 @@ upload_to_gs:
 
 .PHONY: pipenv_setup
 pipenv_setup:
-	pip install --upgrade pipenv
+	sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+	python3 pip install --upgrade pipenv
 	@echo "Setting up pipenv with Python $(PYTHON_VERSION)..."
 	# pipenv --python $(PYTHON_VERSION)
 	pipenv --python /usr/bin/python3.10
