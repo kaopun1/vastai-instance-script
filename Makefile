@@ -66,6 +66,7 @@ upload_to_gs:
 
 .PHONY: pipenv_setup
 pipenv_setup:	
+	export LANG=en_US.UTF-8
 	python3 -m pip install --upgrade pipenv
 	@echo "Setting up pipenv with Python $(PYTHON_VERSION)..."
 	# pipenv --python $(PYTHON_VERSION)
