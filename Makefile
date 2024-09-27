@@ -16,7 +16,10 @@ init: update_system setup_gcloud download_from_gs pipenv_setup
 update_system:
 	sudo apt-get update && sudo apt-get upgrade -y
 	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip software-properties-common
-	# install python 3.10
+	export LANG=en_US.UTF-8
+
+.PHONY: install_python_3.10
+install_python_3.10:
 	sudo add-apt-repository -y ppa:deadsnakes/ppa
 	sudo apt-get update -qq
 	sudo apt-get install -y python3.10 python3.10-venv python3.10-dev
@@ -24,7 +27,7 @@ update_system:
 	# update pip
 	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 	sudo python3.10 get-pip.py
-	export LANG=en_US.UTF-8
+	sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
 
 .PHONY: setup_gcloud
 setup_gcloud:
@@ -57,8 +60,7 @@ upload_to_gs:
 	gsutil -m cp -r Makefile gs://cloud_instance/
 
 .PHONY: pipenv_setup
-pipenv_setup:
-	sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+pipenv_setup:	
 	python3 -m pip install --upgrade pipenv
 	@echo "Setting up pipenv with Python $(PYTHON_VERSION)..."
 	# pipenv --python $(PYTHON_VERSION)
