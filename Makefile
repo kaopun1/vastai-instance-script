@@ -64,7 +64,8 @@ pipenv_setup:
 	python3 -m pip install --upgrade pipenv
 	@echo "Setting up pipenv with Python $(PYTHON_VERSION)..."
 	# pipenv --python $(PYTHON_VERSION)
-	pipenv --python /usr/bin/python3.10
+	pipenv --python python3
+	# (disable) pipenv --python /usr/bin/python3.10
 	pipenv install requests
 	# pipenv shell
 
