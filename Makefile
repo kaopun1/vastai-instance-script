@@ -10,7 +10,14 @@ PROJECT_NAME = default
 JUPYTER_TOKEN = "my_custom_token"
 
 .PHONY: init
-init: update_system setup_gcloud download_from_gs pipenv_setup
+init: update_system setup_gcloud download_from_gs install_python_library_and_jupyter
+# removed pipenv_setup
+
+.PHONY: install_python_library_and_jupyter
+install_python_library_and_jupyter:
+	python3 -m pip install jupyter transformers tensorflow[and-cuda] 
+	python3 -m ipykernel install --user --name=default_env --display-name "default"
+	jupyter notebook --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
 
 .PHONY: update_system
 update_system:
@@ -21,7 +28,6 @@ update_system:
 .PHONY: install_python_lib
 install_python_lib:
 	python3 -m pip install transformers tensorflow
-
 
 .PHONY: install_python_3.10
 install_python_3.10:
