@@ -10,7 +10,7 @@ PROJECT_NAME = default
 JUPYTER_TOKEN = "my_custom_token"
 
 .PHONY: init
-init: update_system setup_gcloud download_from_gs install_python_library_and_jupyter
+init: update_system setup_gcloud download_from_gs
 # removed pipenv_setup
 
 .PHONY: install_python_library_and_jupyter
