@@ -15,9 +15,9 @@ init: update_system setup_gcloud download_from_gs install_python_library_and_jup
 
 .PHONY: install_python_library_and_jupyter
 install_python_library_and_jupyter:
-	python3 -m pip install jupyter transformers tensorflow[and-cuda] 
+	python3 -m pip install jupyterlab transformers tensorflow[and-cuda] 
 	python3 -m ipykernel install --user --name=my_env --display-name "my_env"
-	jupyter notebook --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
+	jupyter lab --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
 
 .PHONY: update_system
 update_system:
