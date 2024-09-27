@@ -20,7 +20,7 @@ update_system:
 
 .PHONY: install_python_lib
 install_python_lib:
-	python3 -m pip install transformers
+	python3 -m pip install transformers tensorflow
 
 
 .PHONY: install_python_3.10
