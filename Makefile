@@ -10,13 +10,18 @@ PROJECT_NAME = default
 JUPYTER_TOKEN = "my_custom_token"
 
 .PHONY: init
-init: update_system setup_gcloud download_from_gs pipenv_setup
+init: update_system install_python_lib setup_gcloud download_from_gs pipenv_setup
 
 .PHONY: update_system
 update_system:
 	sudo apt-get update && sudo apt-get upgrade -y
 	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip software-properties-common
 	export LANG=en_US.UTF-8
+
+.PHONY: install_python_lib
+install_python_lib:
+	python3 -m pip install transformers
+
 
 .PHONY: install_python_3.10
 install_python_3.10:
