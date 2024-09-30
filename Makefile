@@ -95,8 +95,8 @@ jupyter_setup:
 	# Run Jupyter with the predefined token
 	pipenv run jupyter notebook --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
 
-.PHONY: ollama
-ollama:
+.PHONY: ollama_install
+ollama_install:
 	@echo "Checking if Ollama is installed..."
 	if [ ! -f "/usr/local/bin/ollama" ]; then \
 		echo "Ollama could not be found. Installing Ollama..."; \
@@ -111,9 +111,14 @@ ollama:
 .PHONY: help
 help:
 	@echo "  Available commands:"
-	@echo "  make initialize              # Set up Python environment with pipenv and Jupyter"
-	@echo "  make ollama      # Install Ollama and pull llama3.1 model"
-	@echo ""
-	@echo "  Example usage:"
-	@echo "  make setup"
-	@echo "  make ollama"
+	@echo "  make init                    # Initialize system, set up Google Cloud, and download from Google Storage"
+	@echo "  make update_system           # Update the system packages and install dependencies"
+	@echo "  make install_python_3.10     # Install Python 3.10 and set it as default"
+	@echo "  make setup_gcloud            # Set up Google Cloud SDK and authenticate"
+	@echo "  make download_from_gs        # Download files from Google Storage"
+	@echo "  make upload_to_gs            # Upload files to Google Storage"
+	@echo "  make pipenv_setup            # Set up the pipenv environment with Python $(PYTHON_VERSION)"
+	@echo "  make jupyter_setup           # Set up Jupyter Notebook within the pipenv environment"
+	@echo "  make ollama_install          # Check and install Ollama if not present"
+	@echo "  make install_python_lib      # Install Python libraries (Transformers and TensorFlow)"
+	@echo "  make install_python_library_and_jupyter  # Install JupyterLab and additional Python libraries"
