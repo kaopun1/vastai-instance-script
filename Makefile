@@ -7,18 +7,12 @@ all: help
 # Variables
 PYTHON_VERSION = 3.10
 PROJECT_NAME = default
+FOLDER_NAME = ai_01
 JUPYTER_TOKEN = "my_custom_token"
 
 .PHONY: init
 init: update_system setup_gcloud download_from_gs
 # removed pipenv_setup
-
-.PHONY: install_python_library_and_jupyter
-install_python_library_and_jupyter:
-	python3 -m pip install jupyterlab transformers tensorflow[and-cuda] 
-	python3 -m ipykernel install --user --name=my_env --display-name "my_env"
-	@echo "==== To run jupyterlab==="
-	# jupyter lab --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
 
 .PHONY: update_system
 update_system:
@@ -29,6 +23,14 @@ update_system:
 .PHONY: install_python_lib
 install_python_lib:
 	python3 -m pip install transformers tensorflow
+
+.PHONY: install_python_library_and_jupyter
+install_python_library_and_jupyter:
+	python3 -m pip install jupyterlab transformers tensorflow[and-cuda] 
+	python3 -m ipykernel install --user --name=my_env --display-name "my_env"
+	@echo "==== To run jupyterlab==="
+	# jupyter lab --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
+
 
 .PHONY: install_python_3.10
 install_python_3.10:
@@ -60,15 +62,14 @@ setup_gcloud:
 	@echo "Setting project ID..."
 	gcloud config set project grand-karma-281915 --quiet
 
-
 .PHONY: download_from_gs
 download_from_gs:
-	mkdir -p ./ai_01
-	gsutil -m cp -r gs://cloud_instance/instances/ai_01/* ./ai_01
+	mkdir -p ./$(FOLDER_NAME)
+	gsutil -m cp -r gs://cloud_instance/instances/$(FOLDER_NAME)/* ./$(FOLDER_NAME)
 
 .PHONY: upload_to_gs
 upload_to_gs:
-	gsutil -m cp -r ./ai_01/* gs://cloud_instance/instances/ai_01/
+	gsutil -m cp -r ./$(FOLDER_NAME)/* gs://cloud_instance/instances/$(FOLDER_NAME)/
 	gsutil -m cp -r Makefile gs://cloud_instance/
 
 .PHONY: pipenv_setup
