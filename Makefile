@@ -107,6 +107,8 @@ ollama_install:
 
 	# ollama serve
 	# ollama pull llama3.1
+	# ollama pull llama3.2:3b
+
 
 .PHONY: help
 help:
