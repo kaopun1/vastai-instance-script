@@ -114,7 +114,12 @@ hf_install:
 	@echo "Installing Huggingface..."
 	python3 -m pip install huggingface_hub[cli] huggingface_hub[hf_transfer]
 	echo "export HF_HUB_ENABLE_HF_TRANSFER=1" >> ~/.bashrc
-	# huggingface-cli download xxxx yyyy
+	@echo "Please run 'source ~/.bashrc' to apply environment changes."
+
+	# DOWNLOAD MODEL
+	# HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download lysandre/arxiv-nlp config.json
+	# HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download Thanabordee/openthaigpt1.5-7b-instruct-Q4_K_M-GGUF
+	
 
 
 .PHONY: help
