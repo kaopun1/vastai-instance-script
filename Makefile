@@ -105,7 +105,7 @@ ollama_install:
 		echo "Ollama is already installed."; \
 	fi
 
-	# ollama serve
+	ollama serve &
 	# ollama pull llama3.1
 	# ollama pull llama3.2:3b
 
