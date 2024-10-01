@@ -65,12 +65,12 @@ setup_gcloud:
 .PHONY: download_from_gs
 download_from_gs:
 	mkdir -p ./$(FOLDER_NAME)
-	gsutil -m cp -r gs://cloud_instance/instances/$(FOLDER_NAME)/* ./$(FOLDER_NAME)
+	gsutil -m cp -n -r gs://cloud_instance/instances/$(FOLDER_NAME)/* ./$(FOLDER_NAME) || exit 1
 
 .PHONY: upload_to_gs
 upload_to_gs:
-	gsutil -m cp -r ./$(FOLDER_NAME)/* gs://cloud_instance/instances/$(FOLDER_NAME)/
-	gsutil -m cp -r Makefile gs://cloud_instance/
+	gsutil -m cp -n -r ./$(FOLDER_NAME)/* gs://cloud_instance/instances/$(FOLDER_NAME)/
+	gsutil -m cp -n -r Makefile gs://cloud_instance/
 
 .PHONY: pipenv_setup
 pipenv_setup:	
