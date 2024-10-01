@@ -16,9 +16,9 @@ init: update_system setup_gcloud download_from_gs
 
 .PHONY: update_system
 update_system:
+	echo "export LANG=en_US.UTF-8" >> ~/.bashrc
 	sudo apt-get update && sudo apt-get upgrade -y
 	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip software-properties-common
-	export LANG=en_US.UTF-8
 
 .PHONY: install_python_lib
 install_python_lib:
@@ -108,6 +108,13 @@ ollama_install:
 	# ollama serve
 	# ollama pull llama3.1
 	# ollama pull llama3.2:3b
+
+.PHONY: hf_install
+hf_install:
+	@echo "Installing Huggingface..."
+	python3 -m pip install huggingface_hub[cli] huggingface_hub[hf_transfer]
+	echo "export HF_HUB_ENABLE_HF_TRANSFER=1" >> ~/.bashrc
+	# huggingface-cli download xxxx yyyy
 
 
 .PHONY: help
