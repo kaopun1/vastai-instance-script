@@ -70,7 +70,7 @@ download_from_gs:
 .PHONY: upload_to_gs
 upload_to_gs:
 	# backup current gs folder
-	CURRENT_DATE=$$(date +%Y-%m-%d) && \
+	bash -c 'CURRENT_DATE=$$(date +%Y-%m-%d); \
 	gsutil -m cp -r gs://cloud_instance/instances/$(FOLDER_NAME)/ gs://cloud_instance/backup/$(FOLDER_NAME)-$$CURRENT_DATE/
 
 	# gsutil -m cp -n -r ./$(FOLDER_NAME)/* gs://cloud_instance/instances/$(FOLDER_NAME)/
