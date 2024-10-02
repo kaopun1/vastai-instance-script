@@ -11,7 +11,7 @@ FOLDER_NAME = ai_01
 JUPYTER_TOKEN = "my_custom_token"
 
 .PHONY: init
-init: update_system setup_gcloud download_from_gs ollama_install
+init: update_system setup_gcloud download_from_gs install_python_lib ollama_install 
 # removed pipenv_setup
 
 .PHONY: update_system
@@ -22,7 +22,7 @@ update_system:
 
 .PHONY: install_python_lib
 install_python_lib:
-	python3 -m pip install transformers tensorflow
+	python3 -m pip install transformers
 
 .PHONY: install_python_library_and_jupyter
 install_python_library_and_jupyter:
