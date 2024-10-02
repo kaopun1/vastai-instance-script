@@ -69,7 +69,12 @@ download_from_gs:
 
 .PHONY: upload_to_gs
 upload_to_gs:
-	gsutil -m cp -n -r ./$(FOLDER_NAME)/* gs://cloud_instance/instances/$(FOLDER_NAME)/
+	# backup current gs folder
+	CURRENT_DATE=$$(date +%Y-%m-%d) && \
+	gsutil -m cp -r gs://cloud_instance/instances/$(FOLDER_NAME)/ gs://cloud_instance/backup/$(FOLDER_NAME)-$$CURRENT_DATE/
+
+	# gsutil -m cp -n -r ./$(FOLDER_NAME)/* gs://cloud_instance/instances/$(FOLDER_NAME)/
+	gsutil -m rsync -d -r ./$(FOLDER_NAME) gs://cloud_instance/instances/$(FOLDER_NAME)/
 	gsutil -m cp -n -r Makefile gs://cloud_instance/
 
 .PHONY: pipenv_setup
