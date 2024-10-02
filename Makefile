@@ -22,7 +22,7 @@ update_system:
 
 .PHONY: install_python_lib
 install_python_lib:
-	python3 -m pip install transformers
+	python3 -m pip install transformers python-dotenv
 
 .PHONY: install_python_library_and_jupyter
 install_python_library_and_jupyter:
