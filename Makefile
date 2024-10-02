@@ -18,7 +18,7 @@ init: update_system setup_gcloud download_from_gs install_python_lib ollama_inst
 update_system:
 	echo "export LANG=en_US.UTF-8" >> ~/.bashrc
 	sudo apt-get update && sudo apt-get upgrade -y
-	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip software-properties-common htop
+	sudo apt-get install -y git pipenv python3-pip bash-completion curl unzip software-properties-common htop nano
 
 .PHONY: install_python_lib
 install_python_lib:
