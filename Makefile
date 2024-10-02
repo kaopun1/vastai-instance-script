@@ -11,7 +11,7 @@ FOLDER_NAME = ai_01
 JUPYTER_TOKEN = "my_custom_token"
 
 .PHONY: init
-init: update_system setup_gcloud download_from_gs
+init: update_system setup_gcloud download_from_gs ollama_install
 # removed pipenv_setup
 
 .PHONY: update_system
@@ -108,6 +108,7 @@ ollama_install:
 	ollama serve &
 	# ollama pull llama3.1
 	# ollama pull llama3.2:3b
+	# ollama run llava:13b
 
 .PHONY: hf_install
 hf_install:
