@@ -11,8 +11,8 @@ FOLDER_NAME = ai_01
 JUPYTER_TOKEN = "my_custom_token"
 
 .PHONY: init
-init: update_system setup_gcloud download_from_gs install_python_lib ollama_install 
-# removed pipenv_setup
+init: update_system setup_gcloud download_from_gs install_python_lib  
+# NOT RUN: pipenv_setup ollama_install
 
 .PHONY: update_system
 update_system:
@@ -26,7 +26,7 @@ install_python_lib:
 
 .PHONY: install_python_library_and_jupyter
 install_python_library_and_jupyter:
-	python3 -m pip install jupyterlab transformers tensorflow[and-cuda] google-cloud-secret-manager 
+	python3 -m pip install jupyterlab transformers tensorflow[and-cuda]
 	python3 -m ipykernel install --user --name=my_env --display-name "my_env"
 	@echo "==== To run jupyterlab==="
 	# jupyter lab --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
