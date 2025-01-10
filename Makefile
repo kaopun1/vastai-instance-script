@@ -22,15 +22,14 @@ update_system:
 
 .PHONY: install_python_lib
 install_python_lib:
-	python3 -m pip install transformers python-dotenv
+	python3 -m pip install transformers python-dotenv google-cloud-secret-manager
 
 .PHONY: install_python_library_and_jupyter
 install_python_library_and_jupyter:
-	python3 -m pip install jupyterlab transformers tensorflow[and-cuda] 
+	python3 -m pip install jupyterlab transformers tensorflow[and-cuda] google-cloud-secret-manager 
 	python3 -m ipykernel install --user --name=my_env --display-name "my_env"
 	@echo "==== To run jupyterlab==="
 	# jupyter lab --allow-root --NotebookApp.token=$(JUPYTER_TOKEN) --NotebookApp.password=''
-
 
 .PHONY: install_python_3.10
 install_python_3.10:
